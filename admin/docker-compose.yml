@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+# . means all the file here and :/ connects the files to docker app, change in app changes here and change here changes docker file
+    depends_on:
+      - db
+# depends_on means backend container will run after db container
+
+  db:
+    image: mysql:5.7.22
+    restart: always
+# restart: always will restart mysql in case it stops because when it stops it crashes the django
+    environment:
+      MYSQL_DATABASE: admin
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - .dbdata:/var/lib/mysql
+    ports:
+      - 33066:3306
