@@ -7,3 +7,7 @@ mydb = mysql.connector.connect(
     port='33066',
     database='admin'
 )
+
+#mycursor = mydb.cursor()
+
+#mycursor.execute("CREATE DATABASE")
